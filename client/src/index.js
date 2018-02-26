@@ -35,33 +35,45 @@ class App extends Component {
         console.log("here");
 
         axios.post('http://localhost:3001/subtract', {
-            first: '40',
-            second: '40'
-        }).then(function (response) {
+            first: this.state.first,
+            second: this.state.second
+        }).then((response) => {
+            this.setState({
+                answer: response.data,
+            });
             console.log(response.data);
-        }).catch(function (error) {
+
+        }).catch((error) => {
             console.log(error);
         });
     }
 
     multiplication() {
         axios.post('http://localhost:3001/multiply', {
-            first: '40',
-            second: '40'
-        }).then(function (response) {
+            first: this.state.first,
+            second: this.state.second
+        }).then((response) => {
+            this.setState({
+                answer: response.data,
+            });
             console.log(response.data);
-        }).catch(function (error) {
+
+        }).catch((error) => {
             console.log(error);
         });
     }
 
     division() {
         axios.post('http://localhost:3001/divide', {
-            first: '40',
-            second: '40'
-        }).then(function (response) {
+            first: this.state.first,
+            second: this.state.second
+        }).then((response) => {
+            this.setState({
+                answer: response.data,
+            });
             console.log(response.data);
-        }).catch(function (error) {
+
+        }).catch((error) => {
             console.log(error);
         });
     }
