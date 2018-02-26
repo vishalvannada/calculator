@@ -1,75 +1,136 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom'
-import logo from './logo.svg';
-import axios from 'axios'
+import ReactDOM from 'react-dom';
+import axios from 'axios';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class App extends Component {
 
     constructor(props) {
         super(props);
-
+        this.state = {
+            first: '',
+            second: '',
+            answer: ''
+        };
     }
 
-    function () {
-
+    addition() {
+        console.log("here");
         axios.post('http://localhost:3001/add', {
+            first: this.state.first,
+            second: this.state.second
+        }).then((response) => {
+            this.setState({
+                answer: response.data,
+            });
+            console.log(response.data);
+
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    subtraction() {
+        console.log("here");
+
+        axios.post('http://localhost:3001/subtract', {
             first: '40',
             second: '40'
-        })
-            .then(function (response) {
-                console.log(response.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        }).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+
+    multiplication() {
+        axios.post('http://localhost:3001/multiply', {
+            first: '40',
+            second: '40'
+        }).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+
+    division() {
+        axios.post('http://localhost:3001/divide', {
+            first: '40',
+            second: '40'
+        }).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 
 
     render() {
 
-        this.function();
+        const style = {
+            margin: 12,
+        };
+
+        const labelStyle = {
+            fontWeight: 'bold',
+        };
+
+        const isEmpty = () => {
+            console.log(this.state.answer === '');
+            return this.state.answer === '';
+        };
 
         return (
+            <div className="container">
+                <div className="jumbotron mt-5">
+                    <h1 className="text-center">Calculator</h1>
 
-
-            <div class="wrapper">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-sm-offset-4 col-md-offset-4 col-lg-offset-4 col-sm-4 col-md-4 col-lg-4">
-                            <div class="panel panel-primary">
-                                <div class="panel-body">
-                                    <h1>Calculator</h1>
-
-                                    <div className="form-group">
-                                        <div className="col-sm-8 col-md-8 col-lg-8">
-                                            <input name="first" class="form-control" type="number" step="any"
-                                                   value="<%= data[0] %>"
-                                                   id="first" placeholder="First Number" required/>
-                                        </div>
-                                    </div>
-
-                                    <div className="form-group">
-                                        <div className="col-sm-8 col-md-8 col-lg-8">
-                                            <input type="number" class="form-control" step="any" value="<%= data[1] %>"
-                                                   name="second" id="second" placeholder="Second Number" required/>
-                                        </div>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary">Addition</button>
-                                    <button type="submit" formaction="/subtract" class="subtract">Subtract</button>
-                                    <button type="submit" formaction="/divide" class="divide">Division</button>
-                                    <button type="submit" formaction="/multiply" class="multiply">Multiplication
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="form-group col-md-6 mt-4 mx-auto">
+                        <input
+                            value={this.state.first}
+                            name="first" className="form-control" type="number" step="any"
+                            id="first" placeholder="First Number"
+                            onChange={event => this.setState({first: event.target.value})}
+                        />
                     </div>
+
+                    <div className="form-group col-md-6 mx-auto">
+                        <input
+                            value={this.state.second}
+                            className="form-control" name="second" type="number" step="any"
+                            id="second" placeholder="Second Number"
+                            onChange={event => this.setState({second: event.target.value})}
+                        />
+                    </div>
+
+
+                    <MuiThemeProvider>
+                        <RaisedButton onClick={() => this.addition()} label="Addition" labelColor="#FAFAFA"
+                                      backgroundColor="#BF360C" labelStyle={labelStyle} style={style}/>
+                    </MuiThemeProvider>
+                    <MuiThemeProvider>
+                        <RaisedButton onClick={() => this.subtraction()} label="Subtraction" labelColor="#FAFAFA"
+                                      backgroundColor="#BF360C" labelStyle={labelStyle} style={style}/>
+                    </MuiThemeProvider>
+                    <MuiThemeProvider>
+                        <RaisedButton onClick={() => this.multiplication()} label="Multiplication" labelColor="#FAFAFA"
+                                      backgroundColor="#BF360C" labelStyle={labelStyle}
+                                      style={style}/>
+                    </MuiThemeProvider>
+                    <MuiThemeProvider>
+                        <RaisedButton onClick={() => this.division()} label="Division" labelColor="#FAFAFA"
+                                      backgroundColor="#BF360C" labelStyle={labelStyle} style={style}/>
+                    </MuiThemeProvider>
+
+                    <h3 className={isEmpty() ? "class1" : "class2"}>Result is {this.state.answer}</h3>
+
+
                 </div>
             </div>
-
-
-        );
+        )
+            ;
     }
 }
 
