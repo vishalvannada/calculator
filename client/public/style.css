@@ -1,27 +1,34 @@
-.container{
+.container {
     margin-top: 120px;
     height: 0px;
     width: 670px;
 }
 
-.jumbotron{
+.jumbotron {
     padding: 2rem 2rem;
-    background-color: transparent;
-    border: 1px solid dimgrey;
+    background: #141519;
 }
 
-body{
-    background-color: #FFB85F;
+
+html {
+    height: 100%;
 }
 
-h1, h3{
-    color: darkred;
+body {
+    background: -webkit-linear-gradient(45deg, rgba(4, 2, 96, 0.7), rgba(180, 49, 183, 0.9)), -webkit-linear-gradient(0deg, rgba(51, 136, 140, 0.3), rgba(87, 240, 240, 0.1));
+    background: -moz-linear-gradient(45deg, rgba(4, 2, 96, 0.7), rgba(180, 49, 183, 0.9)), -moz-linear-gradient(0deg, rgba(51, 136, 140, 0.3), rgba(87, 240, 240, 0.1));
+    background: -o-linear-gradient(45deg, rgba(4, 2, 96, 0.7), rgba(180, 49, 183, 0.9)), -o-linear-gradient(0deg, rgba(51, 136, 140, 0.3), rgba(87, 240, 240, 0.1));
+    background: linear-gradient(45deg, rgba(4, 2, 96, 0.7), rgba(180, 49, 183, 0.9)), linear-gradient(90deg, rgba(51, 136, 140, 0.3), rgba(87, 240, 240, 0.1));
 }
 
-.class1{
+h1, h3 {
+    color: white;
+}
+
+.class1 {
     display: none;
 }
 
-h3{
+h3 {
     text-align: center;
 }
