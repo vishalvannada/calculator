@@ -16,13 +16,15 @@ class App extends Component {
 
     addition() {
 
-        if (isNaN(this.state.first) || isNaN(this.state.second)) {
+        console.log(this.state.first)
+        if(isNaN(this.state.first) || isNaN(this.state.second)) {
             swal("Please Enter a Number");
             return;
         }
 
         if (this.state.first === "") {
             swal("Please enter the first number");
+            console.log("first value"+this.state.first);
             return;
         }
 
@@ -106,7 +108,7 @@ class App extends Component {
     }
 
     division() {
-        
+
         if (isNaN(this.state.first) || isNaN(this.state.second)) {
             swal("Please Enter a Number");
             return;
@@ -148,25 +150,24 @@ class App extends Component {
         return (
             <div className="container">
                 <div className="jumbotron mt-5">
-                    <h3 className="text-center">Calculator</h3>
+                    <h1 className="text-center">Calculator</h1>
 
                     <div className="form-group col-md-6 mt-4 mx-auto">
                         <input
                             value={this.state.first}
-                            name="first" className="form-control" type="number" step="1"
+                            name="first" className="form-control" type="number"
                             id="first" placeholder="First Number"
-                            onChange={event => this.setState({first: event.target.value})
-                            }
-                        />
+                            onChange={event => this.setState({first: event.target.value})}
+                        required/>
                     </div>
 
                     <div className="form-group col-md-6 mx-auto">
                         <input
                             value={this.state.second}
-                            className="form-control" name="second" type="number" step="1"
+                            className="form-control" name="second" type="number"
                             id="second" placeholder="Second Number"
                             onChange={
-                                event => this.setState({second: event.target.value})}
+                                (event) => this.setState({second: event.target.value})}
                         />
                     </div>
 
@@ -187,7 +188,7 @@ class App extends Component {
                     </div>
 
 
-                    <h3 className={isEmpty() ? "class1 mt-4" : "class2 mt-4"}>Result is {this.state.answer}</h3>
+                    <h3 className={isEmpty() ? "class1 mt-4 text-center" : "class2 mt-4 text-center"}>Result is {this.state.answer}</h3>
 
 
                 </div>
